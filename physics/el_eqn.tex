@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+\usepackage{amsmath, amssymb, physics}
+\usepackage{tikz, tikz-feynman}
+
+\newcommand{\lagr}{\mathcal{L}}
+\newcommand{\phim}{\Phi^{i}}
+\newcommand{\elpot}{\pdv{\lagr}{\phim}}
+\newcommand{\pmu}[1]{\partial_{#1}}
+\newcommand{\elmom}{\pdv{\lagr}{(\pmu{\mu}\phim)}}
+
+\title{Deriving the Euler-Lagrange Equation}
+\author{Angel A. Valdenegro}
+
+\begin{document}
+\maketitle
+
+Determining the Euler-Lagrange Equation is a straightforward process if you remember your integration by parts! The goal of this paper is to derive the Euler-Lagrange equation for a scalar field. This equation has a lot of importance in fields like Relativity and Quantum Field Theory, so let's get started!
+
+\section*{Derivation}
+To set up the Euler-Lagrange Equation, we need to remember the concept of textit{action}. Action allows us to look at the sum of the many different possible trajectories a physical system can have in the phase space. So, when we minimize the action, using a derivative, we are also finding the shortest trajectory in the phase space. Recall that the principle of least action tells us that: 
+\[
+    \delta S = \delta \int \,dt \cdot \lagr (q, \dot{q}) = 0
+.\] 
+
+However, when we are working with a Field Theory, then we need to replace the concept of every coordinate with a field $\phim$. Moreover, we also need to integrate over spacetime, which is a four-dimensional integral. This means that instead of using our traditional notion of the Lagrangian $\lagr$, we need to look at the Lagrangian density. Don't worry about being pedantic; the Lagrangian density is used so often, we also call it the Lagrangian.
+
+So, when we extend our principle of least action to spacetime, we get:
+
+\[
+    \delta S = \delta \int \,d^4 x \cdot \lagr (\phim, \pmu{\mu}\phim) = 0
+.\] 
+
+Now we can get started on integrating it. Notice that since we are describing the change of this system, we want to use partial derivatives to describe how the action changes with respect to its parameters. This means then that the above will become:
+
+\[
+    \delta S = \int \,d^4 x \cdot \Bigg(\elpot \delta \phim + \elmom \delta (\pmu{\mu}\phim) \Bigg) = 0
+.\] 
+
+Now we can separate this into two different integrals. Let's presciently integrate the second term first (because we might be able to make the delta term in the second term the same as the delta term in the first term). So looking at just the second term and integrating:
+
+\[
+    \delta S = \int \,d^4 x \cdot \Bigg(\elmom \delta (\pmu{\mu}\phim) \Bigg) = 0 \implies
+\] 
+
+\[
+    \delta S = \delta\phim \elmom - \int \,d^4 x \cdot \Bigg[\delta\phim \pmu{\mu}\Big( \elmom \Big) \Bigg] = 0
+.\] 
+
+Now, this means that in the case that the boundary terms vanish (not Yang-Mills Theory for instantons), that the value of $\delta\phim$ will converge to zero at the boundary. This means that we can put our two integrals back together again to find that:
+
+\[
+\delta S = \int \,d^4 x \cdot \delta\phim \Bigg[\elpot - \pmu{\mu}\Big( \elmom \Big) \Bigg] = 0
+.\] 
+
+Notice now that this means that the least action occurs when the Euler-Lagrange Equation is satisfied. We found the Euler-Lagrange Equation for a scalar field!
+
+\begin{equation}
+    \elpot - \pmu{\mu}\Big(\elmom \Big) = 0.
+\end{equation}
+\end{document}

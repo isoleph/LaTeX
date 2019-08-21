@@ -1,0 +1,115 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, physics}
+\usepackage{tikz, tikz-feynman}
+\usepackage{parskip}
+
+\newcommand{\lagr}{\mathcal{L}}
+\newcommand{\mink}{\eta^{\mu\nu}}
+\newcommand{\cvd}[1]{\partial_{#1}}
+\newcommand{\cnd}[1]{\partial^{#1}}
+\newcommand{\pmu}[1]{\partial_{#1}}
+
+\title{The Electromagnetic Lagrangian}
+\author{\'{A}ngel A. Valdenegro}
+
+\begin{document}
+\maketitle
+
+The goal of this paper is to explain how to derive the Maxwell Equations from the Electromagnetic Lagrangian. Moreover, it is aimed at explaining how consistent the Lagrangian formalism is with the laws of Electromagnetism. First, let's remember what a Lagrangian is, and then dive into how we can find the Maxwell Equations from one.
+
+\section{Introducing the Lagrangian}
+
+\[
+    \lagr(q,\dot{q}) = T(\dot{q}) - V(q)
+.\] 
+
+ Lagrangians offer us a very powerful insight into the energy in a system and how that system may evolve. The Lagrangian gives us a near complete description of a system's kinetic, gradient, and potential energies, and it tells us the trajectory of that system in the phase space. Less technically, it tells us how the system will evolve over time.
+
+Before we derive Maxwell's Equations from the Electromagnetic Lagrangian, let's first see how the Lagrangian describes the energies I mentioned above. That is, let's see how a Lorentz Invariant formulation of these energies makes the Lagrangian so useful.
+
+Most of the utility of the Lagrangian comes from its Lorentz Invariance; that is, it's energy content should stay the same magnitude no matter what frame it's in, however, the way those energies are distributed are free to change. These energies are the kinetic energy, the gradient energy, and the potential energy. These energies aren't necessarily Lorentz Invariant by themselves, but ideally a Lagrangian is.
+
+The potential energy ($V(\phi)$) in a Lagrangian only depends on its position in space. Since the potential energy remains the same even after a translation, then we really don't have to worry about the potential energy's invariance. It's already Lorentz Invariant.
+
+
+Kinetic energy ($\frac{1}{2} \dot{\phi}^2$) and gradient energy ($\frac{1}{2} \nabla\phi ^2$), however, do change depending on different speeds. But if we use the language of tensors to envelope both of them together, we can get a Lorentz Invariant quantity of their energy.
+    
+Now suppose, a bit presciently, that the Lagrangian will take a form something like below:
+
+\[
+    \lagr = \frac{1}{2} \dot{\phi}^2 + \frac{1}{2} (\nabla \phi)^2 - V(\phi)
+.\] 
+
+We can make the first two terms Lorentz Invariant if we package them using a Lorentz Invariant tensor. Let's do this by using the invariant Minkowski metric $\mink (-+++)$. Then we'll find that the Lagrangian becomes:
+
+\[
+    \lagr = -\frac{1}{2} \mink (\cvd{\mu}\phi) (\cvd{\nu}\phi) - V(\phi)
+.\] 
+
+If you follow the notes on the Klein-Gordon Equation, there is a good description to show you that applying the Euler-Lagrange Equation to this general Lagrangian will give you the d'Alembertian operator and the potential energy gradient.
+
+\section{Deriving Maxwell's Equations}
+Now, let's suppose we have an experimentally modelled Lagrangian to describe the Electromagnetic forces in a system using the Maxwell Tensor $F^{\mu\nu}$. Let this Lagrangian take the form below:
+\begin{equation}
+    -\frac{1}{4} F_{\mu\nu} F^{\mu\nu} + A_{\mu} J^{\mu}.
+\end{equation}
+
+Recall the Euler-Lagrange Equation where:
+
+\begin{equation}
+    \pdv{\lagr}{\phi} - \pmu{\mu} \Big( \pdv{\lagr}{(\pmu{\mu}\phi)} \Big) = 0.
+\end{equation}
+
+Now, if we apply the Euler-Lagrange equation to this tensor, where we replace every instance of $\phi$ with $A_{\nu}$, then we will find the potential term will become: 
+
+\[
+     \pdv{A_{\nu}} (A_{\mu}J^{\mu}) = \delta^{\nu}_{\mu} J^{\mu} = J^{\nu} \implies J^{\mu}
+\] 
+
+Great. Although, the momentum term is a lot more complex. Let's look at it more closely replacing the indices $\mu, \nu$ with $\alpha, \beta$ to avoid confusion. Now our second term in (1) becomes as follows:
+
+\[
+    - \frac{1}{4} F_{\alpha \beta} F^{\alpha \beta} \implies - \frac{1}{4} F_{\alpha \beta} \eta^{\alpha \rho} F_{\rho \sigma} \eta^{\sigma \beta}
+.\] 
+
+Now if we try to evaluate the second term in (2), we will have to look at the particular derivative where:
+
+\[
+     \pdv{(F_{\alpha\beta})}{(\pmu{\mu} A_{\nu})} = 
+     \pdv{(\pmu{\mu}A_{\nu})} (\pmu{\alpha} A_{\beta} - \pmu{\beta} A_{\alpha}) \implies
+\] 
+
+\[
+    (\delta^{\mu}_{\alpha}\delta^{\nu}_{\beta} - \delta^{\mu}_{\beta}\delta^{\nu}_{\alpha})
+.\] 
+
+So now when we look for the second term in (2), we'll find that:
+
+\[
+    -\frac{1}{4} \eta^{\alpha \rho} \eta^{\sigma \beta}\Bigg[ (\delta^{\mu}_{\alpha}\delta^{\nu}_{\beta} - \delta^{\mu}_{\beta}\delta^{\nu}_{\alpha})F_{\rho\sigma} + (\delta^{\mu}_{\rho}\delta^{\nu}_{\sigma} - \delta^{\mu}_{\sigma}\delta^{\nu}_{\rho}) F_{\alpha\beta}\Bigg]
+.\] 
+
+Which then evaluates to:
+\[
+    -\frac{1}{4} \Big( F^{\mu\nu} - F^{\nu\mu} + F^{\mu\nu} - F^{\nu\mu}\Big)
+\] 
+
+Bear in mind that the Maxwell tensor is anti-symmetric; that is, $F^{\mu\nu} = - F^{\nu\mu}$. So this entire term will (either satisfyingly or frustratingly) simplify to:
+
+\[
+    -F^{\mu\nu}
+\]
+
+And after finding the four-derivative of this and putting all of our pieces of the Euler-Lagrange Equation in (2) together, we get that:
+
+\[
+    J^{\nu} + \pmu{\mu} F^{\mu\nu} = 0 \implies
+\] 
+
+\begin{equation}
+    \pmu{\nu} F^{\mu\nu} = J^{\mu}.
+\end{equation}
+
+Which is the tensor version of the Maxwell equations!
+\end{document}

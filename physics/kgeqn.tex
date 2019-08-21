@@ -1,0 +1,100 @@
+\documentclass[parskip=full]{article}
+\usepackage{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, physics}
+\title{Derivations of the Klein-Gordon Equation}
+\author{\'{A}ngel A. Valdenegro}
+
+\begin{document}
+
+\maketitle
+
+\section{Using a Na\"{i}ve Hamiltonian}
+We might in a straight-forward manner derive the Klein-Gordon Equation by recasting the Hamiltonian in the Schr\"{o}dinger Equation. To do so, remember that the Time-Dependent Schr\"{o}dinger Equation (TISE) is given by:
+\[
+    i\hbar \dot{\psi} = \hat{H}\psi
+.\] 
+Now instead of the typical Hamiltonian that we would consider from the TISE, let us consider the Einstein-Energy Momentum Relation (in natural units) where:
+\[
+    E^2 = p^2 + m^2
+.\] 
+Now, if we were to use this relationship as our Hamiltonian, then we would want to use a squared energy operator where $\hat{H}^2 = (i\frac{d}{dt})^2$ and a squared momentum operator where $\hat{p}^2 = (-i\hbar \nabla)^2$. Inputting these values into our TISE, then we get:
+
+\[
+    \Big(- \frac{d^2}{dt^2} + \nabla^2 + m^2 \Big)\phi = 0 \implies
+\] 
+
+\begin{equation}
+    (\Box + m^2)\phi = 0.
+\end{equation}
+
+\section{Using the Dirac Equation}
+We can derive the Klein-Gordon Equation in a straight-forward way if we multiply the Dirac Equation by its complex conjugate. The reason that this works is because the Dirac Equation is used to describe fermions $(J = \frac{1}{2})$.
+
+The Klein-Gordon Equation, however, describes spin-zero bosons $(J = 0)$. The only particle that really obeys this equation is the Higgs-Boson, and even so, this hasn't yet been experimentally verified.
+
+Let's take a look at the derivation. Recall the Dirac Equation where:
+\[
+    (i\gamma^{\mu} \partial_{\mu} - m)\psi = 0
+.\] 
+
+Then if we multiply by its complex conjugate, we get:
+\[
+    (-i\gamma^{\nu} \partial_{\nu} - m)(i\gamma^{\mu} \partial_{\mu} - m)\phi = 0 \implies
+\] 
+\[
+    (\gamma^{\nu}\gamma^{\mu}\partial_{\nu}\partial_{\nu} + m^2)\phi = 0
+.\]
+
+Then recall because $\gamma^{\nu}\gamma^{\mu} = g^{\mu\nu}$, we can find that the product between the two differential operators will give us the Klein-Gordon Equation where:
+
+\[
+    (\Box + m^2)\phi = 0
+.\]
+
+\section{Using a Lagrangian Scalar Field}
+We can also derive the Klein-Gordon Equation by using the Euler-Lagrange equation on a scalar field $\phi$. Recall the Euler-Lagrange Equation where:
+
+\[
+    \frac{\partial\mathcal{L}}{\partial \phi} - \partial_{\mu} \Bigg( \frac{\partial\mathcal{L}}{\partial(\partial_{\mu}\phi)}  \Bigg) = 0 
+.\] 
+
+Now notice that an invariant Lagrangian may be written as below; later on we will suppose that the potential energy will be described by the Simple Harmonic Oscillator.
+
+\[
+    \mathcal{L} = - \frac{1}{2} \eta^{\mu\nu} (\partial_{\mu}\phi)(\partial_{\nu}\phi) - V(\phi) 
+.\] 
+
+Now if we input the Lagrangian above into the Euler-Lagrange Equation, we get the following:
+
+\[
+    - \frac{\partial V}{\partial \phi} - \partial_{\mu} \Bigg(\frac{\partial\mathcal{L}}{\partial(\partial_{\mu}\phi)}\Bigg) = 0
+.\] 
+
+But for now, let's move away for a moment and attempt to determine what the more complex second term in the above equation is. If we look at the second term more closely, then we'll find that (after we rename the indices to $\rho \text{and} \sigma$):
+
+\[
+    - \frac{1}{2} \eta^{\rho\sigma} \partial_{\mu} \Bigg(\delta^{\mu}_{\rho}\partial_{\sigma}\phi + \delta^{\mu}_{\sigma} \partial_{\rho}\phi \Bigg)
+\] 
+
+So then, after contracting these tensors together, we find that:
+
+\[
+    \partial_{\mu} \partial^{\mu}\phi + \frac{\partial V}{\partial \phi} = 0 
+\] 
+
+Then if we suppose that $V(\phi) = \frac{1}{2} m^2 \phi^2$ as in the Simple Harmonic Oscillator, then we get:
+
+\[
+    (\partial_{\mu} \partial^{\mu} + m^2)\phi = 0 \implies
+\] 
+
+And since the first operator in the parenthesis is the familiar d'Alembertian operator, notice that this also means:
+
+\[
+    (\Box + m^2)\phi = 0
+.\] 
+
+There you have it, the Klein-Gordon Equation in three different ways!
+
+\end{document}
